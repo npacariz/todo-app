@@ -2,7 +2,6 @@ import React from "react";
 
 const Register = ({ errors, listOfCountries, handleChange, handleSubmit }) => {
   let shouldMarkError = field => {
-    console.log(errors);
     const hasError = errors[field];
     return hasError ? (
       <p className="alert alert-danger error-container">{hasError}</p>
