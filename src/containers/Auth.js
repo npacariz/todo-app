@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Login from "./../containers/auth/Login";
-import Register from "./../containers/auth/Register";
+import Login from "./../components/auth/Login";
+import Register from "./../components/auth/Register";
 import { auth } from "./../services/AuthService.js";
 
 class Auth extends Component {
@@ -57,7 +57,7 @@ class Auth extends Component {
   handleRegisterSubmit = event => {
     event.preventDefault();
     this.setState({
-      errors: []
+      registerErrors: []
     });
     auth
       .register(this.state.newUser)
@@ -66,7 +66,7 @@ class Auth extends Component {
       })
       .catch(error => {
         this.setState({
-          errors: error.response.data.errors
+          registerErrors: error.response.data.errors
         });
       });
   };
@@ -84,8 +84,8 @@ class Auth extends Component {
           newUser={this.state.newUser}
           listOfCountries={this.state.listOfCountries}
           errors={this.state.registerErrors}
-          handleSubmit={this.state.handleRegisterSubmit}
-          handleChange={this.state.handleRegisterChange}
+          handleSubmit={this.handleRegisterSubmit}
+          handleChange={this.handleRegisterChange}
         />
       ) : (
         <Login

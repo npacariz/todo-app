@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import NavBar from "./containers/layout/NavBar";
-import ListOfTodos from "./components/ListOfTodos";
-import Auth from "./components/Auth";
+import Layout from "./containers/Layout";
+import ListOfTodos from "./containers/ListOfTodos";
+import Auth from "./containers/Auth";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { auth } from "./services/AuthService";
 
@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar />
+          <Layout />
           <ProtectedRoute exact path="/" component={ListOfTodos} />
           <GuestRoute exact path="/login" component={Auth} />
           <GuestRoute exact path="/register" component={Auth} />
