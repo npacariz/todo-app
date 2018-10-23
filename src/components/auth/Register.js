@@ -51,7 +51,11 @@ class Register extends Component {
   }
   shouldMarkError = field => {
     const hasError = this.state.errors[field];
-    return hasError ? <p className="alert alert-danger">{hasError}</p> : false;
+    return hasError ? (
+      <p className="alert alert-danger error-container">{hasError}</p>
+    ) : (
+      false
+    );
   };
   render() {
     let selectCountry = this.state.listOfCountries

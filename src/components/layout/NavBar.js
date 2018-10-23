@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { auth } from "./../../services/AuthService.js";
 
 class Navbar extends Component {
   logoutUser = () => {
     auth.logout();
-    window.location.href = "/login";
+    this.props.history.push("/login");
   };
   render() {
     let navBarLinks = auth.isAuthenticated() ? (
@@ -30,13 +30,13 @@ class Navbar extends Component {
     );
     return (
       <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand" href="/">
+        <NavLink className="navbar-brand" to="/">
           TodoApp
-        </a>
+        </NavLink>
         <ul className="nav navbar-nav ml-auto">{navBarLinks}</ul>
       </nav>
     );
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
