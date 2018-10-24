@@ -8,7 +8,7 @@ const DisplayTodo = ({
   handleDelete,
   handleEditChanges,
   submitEditedTodo,
-  handleImportant,
+  handlePriority,
   checkboxTodoDone
 }) => {
   let showTodo =
@@ -40,14 +40,17 @@ const DisplayTodo = ({
         >
           {todo.title}
         </span>
-
-        <select onChange={handleImportant} id={todo.id} value={todo.priority}>
+        <select
+          className="priority-select"
+          onChange={handlePriority}
+          id={todo.id}
+          value={todo.priority}
+        >
           <option>3</option>
           <option>2</option>
           <option>1</option>
           <option>0</option>
         </select>
-
         <button
           className="badge badge-danger badge-pill"
           onClick={() => {

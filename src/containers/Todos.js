@@ -91,7 +91,7 @@ class ListOfTodos extends Component {
     });
   };
   // Method for handling priority in todo
-  handleImportant = event => {
+  handlePriority = event => {
     let value = event.target.value;
     let id = parseInt(event.target.id);
     let editTodo = this.state.todos.filter(todo => {
@@ -125,7 +125,7 @@ class ListOfTodos extends Component {
             handleDelete={this.handleDelete}
             handleEditChanges={this.handleEditChanges}
             submitEditedTodo={this.submitEditedTodo}
-            handleImportant={this.handleImportant}
+            handlePriority={this.handlePriority}
             checkboxTodoDone={this.checkboxTodoDone}
           />
         </li>
