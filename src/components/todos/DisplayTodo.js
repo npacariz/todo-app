@@ -7,7 +7,8 @@ const DisplayTodo = ({
   handleEditTodo,
   handleDelete,
   handleEditChanges,
-  submitEditedTodo
+  submitEditedTodo,
+  handleImportant
 }) => {
   let showTodo =
     editing === todo.id ? (
@@ -18,7 +19,7 @@ const DisplayTodo = ({
             value={editTodo.title}
             onChange={handleEditChanges}
           />
-          <button>OK</button>
+          <button className="badge badge-danger badge-pill">OK</button>
         </form>
       </div>
     ) : (
@@ -30,6 +31,13 @@ const DisplayTodo = ({
         >
           {todo.title}
         </span>
+
+        <select onChange={handleImportant} id={todo.id} value={todo.priority}>
+          <option>3</option>
+          <option>2</option>
+          <option>1</option>
+          <option>0</option>
+        </select>
 
         <button
           className="badge badge-danger badge-pill"

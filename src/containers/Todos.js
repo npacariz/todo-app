@@ -90,11 +90,24 @@ class ListOfTodos extends Component {
       editTodo: {}
     });
   };
+  // Method for handling priority in todo
+  handleImportant = event => {
+    let value = event.target.value;
+    let id = parseInt(event.target.id);
+    let editTodo = this.state.todos.filter(todo => {
+      return todo.id === id;
+    });
+    editTodo[0].priority = value;
+    this.saveEdit(id, editTodo[0]);
+  };
 
   render() {
     let todosTitle =
       this.state.todos.length !== 0 ? "List of todos" : "You don't have todos";
-    let todoList = this.state.todos.map(todo => {
+    let sortTodo = this.state.todos.sort((a, b) => {
+      return b.priority - a.priority;
+    });
+    let todoList = sortTodo.map(todo => {
       return (
         <li className="list-group-item custom-li-tag" key={todo.id}>
           <DisplayTodo
@@ -105,6 +118,7 @@ class ListOfTodos extends Component {
             handleDelete={this.handleDelete}
             handleEditChanges={this.handleEditChanges}
             submitEditedTodo={this.submitEditedTodo}
+            handleImportant={this.handleImportant}
           />
         </li>
       );
