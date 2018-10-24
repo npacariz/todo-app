@@ -8,7 +8,8 @@ const DisplayTodo = ({
   handleDelete,
   handleEditChanges,
   submitEditedTodo,
-  handleImportant
+  handleImportant,
+  checkboxTodoDone
 }) => {
   let showTodo =
     editing === todo.id ? (
@@ -24,7 +25,15 @@ const DisplayTodo = ({
       </div>
     ) : (
       <div>
+        <input
+          type="checkbox"
+          defaultChecked={todo.is_done}
+          onClick={() => {
+            checkboxTodoDone(todo.id);
+          }}
+        />
         <span
+          className={todo.is_done ? "styleForDoneTodo" : ""}
           onDoubleClick={() => {
             handleEditTodo(todo.id);
           }}

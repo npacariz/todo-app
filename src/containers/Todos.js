@@ -100,7 +100,14 @@ class ListOfTodos extends Component {
     editTodo[0].priority = value;
     this.saveEdit(id, editTodo[0]);
   };
-
+  // Method for checking done todos
+  checkboxTodoDone = id => {
+    let editTodo = this.state.todos.filter(todo => {
+      return todo.id === id;
+    });
+    editTodo[0].is_done = !editTodo[0].is_done;
+    this.saveEdit(id, editTodo[0]);
+  };
   render() {
     let todosTitle =
       this.state.todos.length !== 0 ? "List of todos" : "You don't have todos";
@@ -119,6 +126,7 @@ class ListOfTodos extends Component {
             handleEditChanges={this.handleEditChanges}
             submitEditedTodo={this.submitEditedTodo}
             handleImportant={this.handleImportant}
+            checkboxTodoDone={this.checkboxTodoDone}
           />
         </li>
       );
