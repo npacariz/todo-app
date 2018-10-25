@@ -28,8 +28,8 @@ export default class AuthService {
     delete axios.defaults.headers.common["Authorization"];
   }
 
-  register(newUser) {
-    return axios.post(`auth/register`, newUser).then(response => {
+  register(User) {
+    return axios.post(`auth/register`, User).then(response => {
       this.savingToken(response.data);
     });
   }
