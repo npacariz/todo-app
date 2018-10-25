@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Layout from "./containers/Layout";
-import ListOfTodos from "./containers/ListOfTodos";
+import Todos from "./containers/Todos";
 import Auth from "./containers/Auth";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { auth } from "./services/AuthService";
@@ -37,12 +37,13 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <div className="App">
-          <Layout />
-          <ProtectedRoute exact path="/" component={ListOfTodos} />
-          <GuestRoute exact path="/login" component={Auth} />
-          <GuestRoute exact path="/register" component={Auth} />
-        </div>
+        <Layout>
+          <div className="App">
+            <ProtectedRoute exact path="/" component={Todos} />
+            <GuestRoute exact path="/login" component={Auth} />
+            <GuestRoute exact path="/register" component={Auth} />
+          </div>
+        </Layout>
       </BrowserRouter>
     );
   }

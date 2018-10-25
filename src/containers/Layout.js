@@ -18,12 +18,15 @@ class Layout extends Component {
       <LogoutLinks />
     );
     return (
-      <nav className="navbar navbar-light bg-light">
-        <NavLink className="navbar-brand" to="/">
-          TodoApp
-        </NavLink>
-        <ul className="nav navbar-nav ml-auto">{navBarLinks}</ul>
-      </nav>
+      <React.Fragment>
+        <nav className="navbar navbar-light bg-light">
+          <NavLink className="navbar-brand" to="/">
+            TodoApp
+          </NavLink>
+          <ul className="nav navbar-nav ml-auto">{navBarLinks}</ul>
+        </nav>
+        <main>{this.props.children}</main>
+      </React.Fragment>
     );
   }
 }
