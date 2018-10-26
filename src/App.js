@@ -37,12 +37,13 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <div className="App">
-          <Layout />
-          <ProtectedRoute exact path="/" component={Todos} />
-          <GuestRoute exact path="/login" component={Auth} />
-          <GuestRoute exact path="/register" component={Auth} />
-        </div>
+        <Layout>
+          <div className="App">
+            <ProtectedRoute exact path="/" component={Todos} />
+            <GuestRoute exact path="/login" component={Auth} />
+            <GuestRoute exact path="/register" component={Auth} />
+          </div>
+        </Layout>
       </BrowserRouter>
     );
   }

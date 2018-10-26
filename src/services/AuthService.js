@@ -1,16 +1,14 @@
 import axios from "axios";
-
+import { MainURL } from "./URL";
 export default class AuthService {
   constructor() {
-    axios.defaults.baseURL = "http://laravelapp.loc/api/";
+    axios.defaults.baseURL = MainURL;
     this.setAxiosDefaultAuthorizationHeader();
   }
 
   login(email, password) {
     return axios.post(`auth/login`, { email, password }).then(response => {
-      localStorage.setItem("token", response.data.access_token);
-      localStorage.setItem("user_id", response.data.user_id);
-      this.setAxiosDefaultAuthorizationHeader();
+      this.savingToken(response.data);
     });
   }
 
@@ -30,14 +28,16 @@ export default class AuthService {
     delete axios.defaults.headers.common["Authorization"];
   }
 
-  register(newUser) {
-    return axios.post(`auth/register`, newUser).then(response => {
-      localStorage.setItem("token", response.data.access_token);
-      localStorage.setItem("user_id", response.data.user_id);
-      this.setAxiosDefaultAuthorizationHeader();
+  register(User) {
+    return axios.post(`auth/register`, User).then(response => {
+      this.savingToken(response.data);
     });
   }
-
+  savingToken(token) {
+    localStorage.setItem("token", token.access_token);
+    localStorage.setItem("user_id", token.user_id);
+    this.setAxiosDefaultAuthorizationHeader();
+  }
   isAuthenticated() {
     return !!localStorage.getItem("token");
   }
