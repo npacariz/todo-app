@@ -46,6 +46,14 @@
   margin-top: 10px;
 }
 
-input {
-  width: 30%;
+.styleForDoneTodo {
+  text-decoration: line-through;
+}
+
+.custom-li-tag {
+  width: 50%;
+  margin: 0 auto;
+}
+.priority-select {
+  margin: 5px;
 }
