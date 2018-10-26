@@ -1,26 +1,50 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Layout from "./containers/Layout";
+import Todos from "./containers/Todos";
+import Auth from "./containers/Auth";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { auth } from "./services/AuthService";
 
 class App extends Component {
   render() {
+    const ProtectedRoute = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={props =>
+          auth.isAuthenticated() === true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{ pathname: "/login", state: { from: props.location } }}
+            />
+          )
+        }
+      />
+    );
+    const GuestRoute = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={props =>
+          auth.isAuthenticated() !== true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+          )
+        }
+      />
+    );
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <Layout>
+          <div className="App">
+            <ProtectedRoute exact path="/" component={Todos} />
+            <GuestRoute exact path="/login" component={Auth} />
+            <GuestRoute exact path="/register" component={Auth} />
+          </div>
+        </Layout>
+      </BrowserRouter>
     );
   }
 }

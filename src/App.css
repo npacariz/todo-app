@@ -30,3 +30,22 @@
     transform: rotate(360deg);
   }
 }
+
+.custom-style-navbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navlink-style {
+  padding-right: 10px !important;
+}
+.error-container {
+  width: 30%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+input {
+  width: 30%;
+}
